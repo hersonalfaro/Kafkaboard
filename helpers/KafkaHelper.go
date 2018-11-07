@@ -12,7 +12,7 @@ func ReadFromKafka(topic string) []string {
 
 	partition := 0
 
-	conn, _ := kafka.DialLeader(context.Background(), "tcp", "localhost:9092", topic, partition)
+	conn, _ := kafka.DialLeader(context.Background(), "tcp", "0.0.0.0:32783", topic, partition)
 
 	conn.SetReadDeadline(time.Now().Add(1 * time.Second))
 	batch := conn.ReadBatch(10e3, 1e6) // fetch 10KB min, 1MB max
